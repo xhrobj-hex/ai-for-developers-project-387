@@ -6,8 +6,8 @@
 
 ## Демо
 
-- Приложение: `https://xhrobj-ai-cal-386.onrender.com`
-- Health-check: `https://xhrobj-ai-cal-386.onrender.com/health`
+- Приложение: `https://xhrobj-ai-cal-387.onrender.com`
+- Health-check: `https://xhrobj-ai-cal-387.onrender.com/health`
 
 ## Основной сценарий
 
