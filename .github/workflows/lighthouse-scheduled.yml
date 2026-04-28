@@ -1,0 +1,73 @@
+name: lighthouse-scheduled
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Set up Chrome
+        id: chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Install Lighthouse CLI
+        run: npm install --global lighthouse
+
+      - name: Run Lighthouse for deployed pages
+        env:
+          BASE_URL: https://ai-for-developers-project-387-dn6e.onrender.com
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: |
+          set -euo pipefail
+
+          mkdir -p lighthouse-reports
+
+          run_lighthouse() {
+            local slug="$1"
+            local url="$2"
+
+            echo "Checking availability: $url"
+            curl --fail --silent --show-error --location "$url" > /dev/null
+
+            echo "Collecting HTML report: $url"
+            lighthouse "$url" \
+              --chrome-path="$CHROME_PATH" \
+              --chrome-flags="--headless --no-sandbox" \
+              --only-categories=performance,accessibility,best-practices,seo \
+              --output=html \
+              --output-path="lighthouse-reports/${slug}.html" \
+              --quiet
+
+            echo "Collecting JSON report: $url"
+            lighthouse "$url" \
+              --chrome-path="$CHROME_PATH" \
+              --chrome-flags="--headless --no-sandbox" \
+              --only-categories=performance,accessibility,best-practices,seo \
+              --output=json \
+              --output-path="lighthouse-reports/${slug}.json" \
+              --quiet
+          }
+
+          run_lighthouse "home" "${BASE_URL}/"
+          run_lighthouse "admin" "${BASE_URL}/admin"
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: lighthouse-reports/
+          if-no-files-found: error
