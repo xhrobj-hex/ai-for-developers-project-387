@@ -63,8 +63,9 @@ export function BookingConfirmPage() {
 
         if (!resolvedSlot) {
           setState({
-            status: "error",
-            message: "Выбранный слот больше недоступен. Откройте список свободного времени и выберите другой.",
+            status: "slot-conflict",
+            slot: resolvedSlot,
+            message: "Это время уже занято. Откройте список слотов и выберите другой интервал.",
           });
           return;
         }
