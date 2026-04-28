@@ -7,7 +7,7 @@
 ## Демо
 
 - Приложение: [ai-for-developers-project-387-dn6e.onrender.com](https://ai-for-developers-project-387-dn6e.onrender.com)
-- Health-check: [ai-for-developers-project-387-dn6e.onrender.com/health](https://ai-for-developers-project-387-dn6e.onrender.com/health)
+- Health-check ✚: [ai-for-developers-project-387-dn6e.onrender.com/health](https://ai-for-developers-project-387-dn6e.onrender.com/health)
 
 ## Основной сценарий
 
