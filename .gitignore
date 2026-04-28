@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Node.js
+node_modules/
+
+# Go build artifacts
+backend/api
+
+# Frontend build artifacts
+frontend/dist/
+
+# Playwright
+frontend/playwright-report/
+frontend/test-results/
