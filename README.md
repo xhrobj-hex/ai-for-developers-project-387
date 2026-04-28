@@ -6,8 +6,8 @@
 
 ## Демо
 
-- Приложение: `https://xhrobj-ai-cal-386.onrender.com`
-- Health-check: `https://xhrobj-ai-cal-386.onrender.com/health`
+- Приложение: [ai-for-developers-project-387-dn6e.onrender.com](https://ai-for-developers-project-387-dn6e.onrender.com)
+- Health-check ✚: [ai-for-developers-project-387-dn6e.onrender.com/health](https://ai-for-developers-project-387-dn6e.onrender.com/health)
 
 ## Основной сценарий
 
